@@ -1,0 +1,165 @@
+(* 
+	Author: Alain Rohr (hftm.ch) / (Original by David Masternak(Festo)) 
+	Date: 28.01.2017
+*)
+
+VAR_GLOBAL
+	(** Variable for base station **)
+	
+	(* Input variables *)
+	bs_partAtIn         AT %IX0.4 : BOOL;  (* Is part available on the left/in side *)
+	bs_partAtOut        AT %IX0.6 : BOOL;  (* Is part available on the right/out side *)
+	bs_base1Av          AT %IX2.2 : BOOL;  (* Are workpieces at output1 available *)
+	bs_base2Av          AT %IX2.6 : BOOL;  (* Are workpieces at output2 available *)
+	bs_base3Av          AT %IX0.2 : BOOL;  (* Are workpieces at output3 available *)
+	bs_b1Retracted      AT %IX2.0 : BOOL;  (* Is Base1 Slide retracted *)
+	bs_b1Extracted      AT %IX2.1 : BOOL;  (* Is Base1 Slide retracted *)
+	
+	bs_b2Retracted      AT %IX2.4 : BOOL;  (* Is Base2 Slide retracted *)
+	bs_b2Extracted      AT %IX2.5 : BOOL;  (* Is Base2 Slide retracted *)
+	
+	bs_b3Retracted      AT %IX0.0 : BOOL;  (* Is Base3 Slide retracted *)
+	bs_b3Extracted      AT %IX0.1 : BOOL;  (* Is Base3 Slide retracted *)
+	
+	(* Output variables *)
+	bs_output1          AT %QX2.0 : BOOL;  (* Get workpiece at output1 *)
+	bs_output2          AT %QX2.4 : BOOL;  (* Get workpiece at output2 *)
+	bs_output3          AT %QX0.0 : BOOL;  (* Get workpiece at output3 *)
+	
+	bs_motorToOut       AT %QX0.4 : BOOL;  (* Run bandmotor to the left side *)
+	bs_motorToIn        AT %QX0.5 : BOOL;  (* Run bandmotor to the right side *)
+	bs_lightRed         AT %QX2.5 : BOOL;  (* Red light *)
+	bs_lightYellow      AT %QX2.6 : BOOL;  (* Yellow light *)
+	bs_lightGreen       AT %QX2.7 : BOOL;  (* Green light *)
+
+	(** Variable for Ring-Station (pick and place 2) **)
+
+	(* Input variables *)
+	rs_partAtIn         AT %IX2.0 : BOOL;  (* Part available *)
+	rs_partAtSep        AT %IX2.1 : BOOL;  (* Part at seperator *)
+	rs_partAtOut        AT %IX2.2 : BOOL;  (* Part at delivery *)
+	rs_partAtSlide      AT %IX2.3 : BOOL;  (* Part at slide *)
+
+	rs_slide1Retracted  AT %IX2.4 : BOOL;  (* is slide1 extracted *)
+	rs_slide1Extracted  AT %IX2.5 : BOOL;  (* is slide2 extracted *)
+    rs_vacuum1IsOn      AT %IX2.6 : BOOL;  (* Eco trigger for slide 1 *)    
+
+    rs_slide2Retracted  AT %IX0.0 : BOOL;  (* is slide2 retracted *)	
+    rs_slide2Extracted  AT %IX0.1 : BOOL;  (* is slide2 extracted *)	
+	rs_vacuum2IsOn      AT %IX0.2 : BOOL;  (* Eco trigger for slide 2 *)
+	
+	(* Output variables *)
+	rs_motorToOut       AT %QX2.0 : BOOL;  (* Turn on bandmotor to Out *)
+	rs_seperator        AT %QX2.2 : BOOL;  (* Turn on seperator *)
+	
+	rs_slide1Retract    AT %QX2.4 : BOOL;  (* Retract slide 1 *)
+	rs_slide1Extract    AT %QX2.5 : BOOL;  (* Extend slide 1 *)
+	rs_slide1Down       AT %QX2.6 : BOOL;  (* Up/Down slide 1 *)
+	rs_vacuum1On        AT %QX0.6 : BOOL;  (* Vacuum on at slide 1 *)
+	rs_vacuum1Off       AT %QX0.7 : BOOL;  (* Vacuum off at slide 1 *)
+	
+	rs_slide2Retract    AT %QX0.0 : BOOL;  (* Retract slide 2 *)
+	rs_slide2Extract    AT %QX0.1 : BOOL;  (* Extend slide 2 *)
+	rs_slide2Down       AT %QX0.2 : BOOL;  (* Up/Down slide 2 *)
+	rs_vacuum2On        AT %QX0.4 : BOOL;  (* Vacuum on at slide 2 *)
+	rs_vacuum2Off       AT %QX0.5 : BOOL;  (* Vacuum off at slide 2 *)
+	
+	rs_lightRed         AT %QX0.3 : BOOL;  (* Red light *)
+	rs_lightYellow      AT %QX2.6 : BOOL;  (* Yellow light *)
+	rs_lightGreen       AT %QX2.7 : BOOL;  (* Green light *)
+	
+
+	(** Variable for Cap Station (pick and place 1) **)
+	(* Input variables *)
+    cs_vacuumIsOn       AT %IX0.0 : BOOL;  (* Is Eco trigger active *)	
+    cs_partAtIn         AT %IX2.0 : BOOL;  (* Is part available *)
+	cs_partAtSep        AT %IX2.1 : BOOL;  (* Is part at seperator *)
+	cs_partAtOut	    AT %IX2.2 : BOOL;  (* Is part on delivery position *)
+	cs_slideRetracted   AT %IX2.4 : BOOL;
+	cs_slideExtracted   AT %IX2.5 : BOOL;
+	cs_slideIsUp	    AT %IX2.6 : BOOL;  (*Cylinder Z-Achse*)
+	
+	(* Output variables *)
+	cs_vacuumOn	        AT %QX0.0 : BOOL;  (* Turn on vacuum *)
+	cs_vacuumOff        AT %QX0.1 : BOOL;  (* Turn off vacuum *)
+	cs_lightRed         AT %QX0.5 : BOOL;  (* Red light *)
+	cs_lightYellow      AT %QX0.6 : BOOL;  (* Yellow light *)
+	cs_lightGreen       AT %QX0.7 : BOOL;  (* Green light *)
+	
+	cs_motorToOut       AT %QX2.0 : BOOL;  (* Bandmotor *)
+	cs_motorToIn        AT %QX2.1 : BOOL;  (* Bandmotor in other direction *)
+	cs_seperator        AT %QX2.2 : BOOL;  (* Seperator *)
+	cs_slideRetract     AT %QX2.4 : BOOL;  (* Retract slide *)
+	cs_slideExtract     AT %QX2.5 : BOOL;  (* Extract slide *)
+	cs_slideDown        AT %QX2.6 : BOOL;  (* Set slide down *)
+	
+	(** Variable for delivery station **)
+	(*  Input variables *)
+	ds_partAtIn         AT %IX0.0 : BOOL;  (* Part available *)
+	ds_partAtInInd		AT %IX0.1 : BOOL;  (* inductive sensor*)
+	ds_partAtIn2		AT %IX0.2 : BOOL;  (* Part sensor 2 *)
+	ds_partAtOut        AT %IX0.3 : BOOL;  (* Part delivered *)
+	ds_sep1Retracted	AT %IX0.4 : BOOL;
+	ds_sep1Extracted	AT %IX0.5 : BOOL;
+	ds_sep2Retracted	AT %IX0.6 : BOOL;
+	ds_sep2Extracted	AT %IX0.7 : BOOL;	
+	
+	(* Output variables *)
+	ds_motorToOut       AT %QX0.0 : BOOL;  (* Turn on bandmotor *)
+	ds_sep1             AT %QX0.1 : BOOL;  (* Seperator line 1 *)
+	ds_sep2             AT %QX0.2 : BOOL;  (* Seperator line 2 *)
+	ds_lock             AT %QX0.3 : BOOL;  (* Lock at the beginning of band *)
+	ds_lightRed         AT %QX2.5 : BOOL;  (* Red light *)
+	ds_lightYellow      AT %QX2.6 : BOOL;  (* Yellow light *)
+	ds_lightGreen       AT %QX2.7 : BOOL;  (* Green light *)
+	
+	
+
+	(* Variable for all mps types *)
+	mpsType : INT := 1; (* What kind of machine *)
+	SFCInit : BOOL;
+	SFCCurrentStep : STRING;
+	
+	(** MODBUS stuff **)
+	input1  : ARRAY[0..12] OF WORD; (* Modbus input register *)
+	output1 : ARRAY[0..12] OF WORD; (* Modbus output register *)
+	
+	(*CDP*)
+	flanke:BOOL; (*Flankenspiel für Processing*)
+	sensorSpiel:BOOL; (*FlankenSpiel für Werkstückerkennung*)
+	noRefBox:BOOL:=TRUE;
+	uiStep: UINT; (*Variable für Schrittweise durchführung von Maschine 0*)
+	
+	(*other Global Variables*)
+	rs_slideCounter : INT := 0;
+	bs_lastInput : WORD := 0;
+    bs_delayTime : TIME := T#0.0S; (* Delaytime for different workpiece colors *)
+    bs_delSiteToOut             : INT := 0; (* On what side we want to deliver (out if 1 / in if 0) *)
+	
+	(* Just for debugging *)
+	rs_t17 AT %IX0.0 : BOOL;
+	rs_t18 AT %IX0.1 : BOOL;
+	rs_t19 AT %IX0.2 : BOOL;
+	rs_t20 AT %IX0.3 : BOOL;
+	rs_t21 AT %IX0.4 : BOOL;
+	rs_t22 AT %IX0.5 : BOOL;
+	rs_t23 AT %IX0.6 : BOOL;
+	rs_t24 AT %IX0.7 : BOOL;
+	rs_t25 AT %IX2.0 : BOOL;
+	rs_t26 AT %IX2.1 : BOOL;
+	rs_t27 AT %IX2.2 : BOOL;
+	rs_t28 AT %IX2.3 : BOOL;
+	rs_t29 AT %IX2.4 : BOOL;
+	rs_t30 AT %IX2.5 : BOOL;
+	rs_t31 AT %IX2.6 : BOOL;
+	rs_t32 AT %IX2.7 : BOOL;
+	rs_t33 AT %QX3.0 : BOOL;
+	rs_t34 AT %QX3.1 : BOOL;
+	rs_t35 AT %QX3.2 : BOOL;
+	rs_t36 AT %QX3.3 : BOOL;
+	rs_t37 AT %QX3.4 : BOOL;
+	rs_t38 AT %QX3.5 : BOOL;
+	rs_t39 AT %QX3.6 : BOOL;
+	rs_t40 AT %QX3.7 : BOOL;
+	rs_slide : INT;
+END_VAR
