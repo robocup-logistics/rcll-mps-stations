@@ -5,7 +5,7 @@ Software running on Festo MPS stations using in the RCLL
 
 ### MPS_OPC_V...
 MPS-Control-Software for BS/CS/RS/DS (except SS) runs on Codesys V3.5
-GUI: http://localhost:8080/webvisu.html
+GUI: http://localhost:8080/webvisu.htm
 
 ### MPS_Sim_V...
 MPS-Mockup Example with CapStation-Simulation(CS) runs on Codesys V3.5
