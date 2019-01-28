@@ -11,8 +11,8 @@ GUI: http://localhost:8080/webvisu.htm
 MPS-Mockup Example with CapStation-Simulation(CS) runs on Codesys V3.5
 GUI: http://localhost:8080/webvisu.htm
 
-### Node-RED RefBoxSim_OPC...
-## RefBox-Mockup with OPC-UA running in Node-RED
+### NodeRED_RefboxSim_OPC_UA_V...
+RefBox-Mockup with OPC-UA running in Node-RED
 
 Install Node-RED: [https://nodered.org/docs/getting-started/installation]
 or
@@ -25,4 +25,4 @@ Import the flow from txt-file [NodeRED_RefboxSim_OPC_UA_V6.0.txt](./NodeRED_Refb
 
 Mockup-GUI: [http://localhost:1880/ui]
 
-**** Under Construction *****
+*** Under Construction ***
