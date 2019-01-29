@@ -17,7 +17,9 @@ RefBox-Mockup with OPC-UA running in Node-RED
 Install Node-RED: [https://nodered.org/docs/getting-started/installation]
 or
 Installation as a docker container:
-´´´docker run -itd --name nodered -p 1880:1880 -p 1883:1883 -p 4840:4840
+```
+docker run -itd --name nodered -p 1880:1880 -p 1883:1883 -p 4840:4840 -v /d/Hyper-V/mount/nodered/:/data nodered/node-red-docker
+```
 
 Install additional node for opc-comm: [https://flows.nodered.org/node/node-red-contrib-opcua]
 
