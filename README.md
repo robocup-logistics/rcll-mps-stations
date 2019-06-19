@@ -36,3 +36,14 @@ Mockup-GUI: http://localhost:1880/ui
 
 ### Video Tutorial
 [![RefBoxSim Installation](./doc/RunDemo.jpg)](./doc/RunDemo.mp4)
+
+
+## Barcodescanner
+The barcode scanners are required for automated workpiece recognition, one scanner for each machine except for the base station which requires two. 
+The new barcode scanner provides the data via USB port. Since USB is not an industrial standard there needs to be a «gateway». 
+This «gateway» in form of a Raspberry Pi writes the data on the existing OPC UA server from the Festo PLC.
+Product barcodes on the bases are UPC-E codes.
+[![Barcodescanner Installation2](./doc/barcodereader_2.jpg)]
+
+Before first use setup the barcodescanner (raspberry and usb scanner) using the QuickstartGuide.
+[![Barcodescanner Installation](./doc/barcodereader_1.jpg)]
