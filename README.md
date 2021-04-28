@@ -1,5 +1,6 @@
 # RCLL-MPS (Modular Production Systems)
 Software running on Festo MPS stations using in the RCLL
+Version 2020 (intended for use in bordeaux, product of a diploma thesis)
 
 ## MPS_OPC
 MPS-Control-Software for BS/CS/RS/DS (except SS) runs on Codesys V3.5
